@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Fully Modded – GTA San Andreas Mods &amp; Fixes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bowlby+One&family=Barlow:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f3e9d2; --surface:#fffaf0; --ink:#1d1a14; --muted:#6b624f; --line:#d8c9a3;
+  --orange:#e8731a; --green:#2c8a3e; --red:#c0392b; --hero1:#ffb347; --hero2:#e8731a; --hero3:#7a2e1b;
+  --shadow:0 6px 0 rgba(0,0,0,.14);
+  box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#0e0f12; --surface:#181a1f; --ink:#f2efe6; --muted:#9a968a; --line:#2b2e36;
+    --orange:#ff8a2b; --green:#3fbf5a; --red:#ff5a47; --hero1:#ff9d3c; --hero2:#d9531e; --hero3:#2a0f1f;
+    --shadow:0 6px 0 rgba(0,0,0,.5);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0e0f12; --surface:#181a1f; --ink:#f2efe6; --muted:#9a968a; --line:#2b2e36;
+  --orange:#ff8a2b; --green:#3fbf5a; --red:#ff5a47; --hero1:#ff9d3c; --hero2:#d9531e; --hero3:#2a0f1f;
+  --shadow:0 6px 0 rgba(0,0,0,.5);
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Barlow",system-ui,Segoe UI,Arial,sans-serif;font-size:17px;line-height:1.5}
+h1,h2,h3,.logo{font-family:"Anton",Impact,"Arial Narrow",sans-serif;font-weight:400;text-transform:uppercase;letter-spacing:.02em;margin:0}
+a{color:inherit}
+.wrap{max-width:1100px;margin:0 auto;padding:0 20px}
+
+/* nav */
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--surface);border-bottom:3px solid var(--orange)}
+nav .wrap{display:flex;align-items:center;gap:18px;height:58px}
+.logo{font-size:26px;color:var(--orange);text-shadow:2px 2px 0 rgba(0,0,0,.35);text-decoration:none;white-space:nowrap}
+.logo b{color:var(--green);font-weight:400}
+nav ul{display:flex;gap:6px;list-style:none;margin:0 0 0 auto;padding:0;overflow-x:auto}
+nav li a{display:block;padding:6px 12px;text-decoration:none;font-weight:700;text-transform:uppercase;font-size:14px;letter-spacing:.06em;color:var(--muted);border-radius:4px}
+nav li a:hover{color:var(--ink);background:var(--bg)}
+#themeBtn{background:none;border:2px solid var(--line);color:var(--ink);border-radius:6px;padding:4px 9px;cursor:pointer;font-size:16px}
+
+/* hero */
+.hero{position:relative;overflow:hidden;background:linear-gradient(180deg,var(--hero1) 0%,var(--hero2) 48%,var(--hero3) 100%);color:#fff;border-bottom:4px solid var(--ink)}
+.hero .wrap{position:relative;z-index:2;padding-top:64px;padding-bottom:150px}
+.hero small{display:inline-block;background:#000;color:var(--hero1);padding:3px 10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;font-size:13px;transform:skew(-8deg)}
+.hero h1{font-size:clamp(46px,9vw,104px);line-height:.95;margin:16px 0 14px;text-shadow:4px 4px 0 rgba(0,0,0,.45)}
+.hero h1 span{color:#8ff0a0}
+.hero p{max-width:520px;font-size:19px;text-shadow:0 1px 6px rgba(0,0,0,.4);margin:0 0 24px}
+.sun{position:absolute;right:8%;bottom:70px;width:210px;height:210px;border-radius:50%;background:radial-gradient(circle,#fff6b0,#ffd34d 55%,#ff9d3c);opacity:.9;z-index:1}
+.skyline{position:absolute;left:0;right:0;bottom:0;width:100%;height:150px;z-index:2;display:block}
+.btn{display:inline-block;border:3px solid #000;background:var(--green);color:#fff;font-family:"Anton",Impact,sans-serif;text-transform:uppercase;letter-spacing:.05em;font-size:18px;padding:10px 22px;cursor:pointer;text-decoration:none;box-shadow:var(--shadow);transition:transform .08s}
+.btn:hover{transform:translateY(-2px)}
+.btn.alt{background:#000;margin-left:8px}
+
+/* stats */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:14px;margin-top:-54px;position:relative;z-index:5}
+.stat{background:var(--surface);border:3px solid var(--ink);padding:14px 16px;box-shadow:var(--shadow);text-align:center}
+.stat b{display:block;font-family:"Anton",Impact,sans-serif;font-size:34px;font-weight:400;color:var(--orange)}
+.stat span{color:var(--muted);font-size:13px;text-transform:uppercase;letter-spacing:.1em;font-weight:700}
+
+/* browser */
+section{padding:56px 0 8px}
+.head{display:flex;flex-wrap:wrap;align-items:end;gap:12px;justify-content:space-between;margin-bottom:18px}
+.head h2{font-size:44px}
+.head h2::after{content:"";display:block;height:5px;width:70px;background:var(--orange);margin-top:6px}
+.tools{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:14px}
+.tools input,.tools select{background:var(--surface);color:var(--ink);border:3px solid var(--ink);padding:9px 12px;font:inherit;min-width:0}
+.tools input{flex:1 1 240px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px}
+.chip{border:2px solid var(--ink);background:var(--surface);color:var(--ink);padding:5px 14px;font:700 14px "Barlow",sans-serif;text-transform:uppercase;letter-spacing:.06em;cursor:pointer}
+.chip.on{background:var(--orange);color:#000}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px}
+.card{background:var(--surface);border:3px solid var(--ink);box-shadow:var(--shadow);display:flex;flex-direction:column;transition:transform .1s}
+.card:hover{transform:translate(-2px,-3px)}
+.thumb{height:92px;display:flex;align-items:flex-end;justify-content:space-between;padding:10px 12px;color:#fff;border-bottom:3px solid var(--ink);background-size:cover}
+.thumb .ic{font-size:38px;line-height:1}
+.tag{font:700 12px "Barlow",sans-serif;text-transform:uppercase;letter-spacing:.1em;background:#000;color:#fff;padding:2px 8px}
+.tag.fix{background:var(--red)} .tag.mod{background:var(--green)} .tag.script{background:#7b3fc4} .tag.tool{background:#2166b8} .tag.gfx{background:#c27a00}
+.body{padding:14px 16px 16px;display:flex;flex-direction:column;gap:8px;flex:1}
+.body h3{font-size:24px}
+.body p{margin:0;color:var(--muted);font-size:15px;flex:1}
+.meta{display:flex;justify-content:space-between;font-size:13px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.06em}
+.dl{align-self:flex-start;font-size:15px;padding:6px 16px}
+.card details{border-top:2px solid var(--line);padding-top:8px;font-size:14px;color:var(--muted)}
+.card summary{cursor:pointer;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--orange)}
+.card details h4{margin:12px 0 4px;color:var(--ink);font-size:13px;text-transform:uppercase;letter-spacing:.08em}
+.card details ul{margin:0;padding-left:18px}
+.card kbd{background:var(--bg);border:2px solid var(--line);padding:0 5px;font:700 12px "Barlow",sans-serif;color:var(--ink)}
+.empty{grid-column:1/-1;text-align:center;padding:40px;color:var(--muted);border:3px dashed var(--line)}
+
+/* guide + footer */
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px;counter-reset:s}
+.step{background:var(--surface);border:3px solid var(--ink);padding:18px 18px 20px;position:relative;counter-increment:s}
+.step::before{content:counter(s);position:absolute;top:-18px;left:14px;background:var(--orange);color:#000;border:3px solid var(--ink);font-family:"Anton",Impact,sans-serif;width:38px;height:38px;display:grid;place-items:center;font-size:20px}
+.step h3{margin:8px 0 6px;font-size:22px}.step p{margin:0;color:var(--muted);font-size:15px}
+footer{margin-top:64px;background:#000;color:#b9b4a4;padding:30px 0 34px;border-top:5px solid var(--orange);font-size:14px}
+footer b{color:var(--orange);font-family:"Anton",Impact,sans-serif;font-weight:400;font-size:20px;letter-spacing:.04em}
+#toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translate(-50%,40px);background:#000;color:#fff;border:3px solid var(--orange);padding:10px 20px;font-family:"Anton",Impact,sans-serif;letter-spacing:.05em;text-transform:uppercase;opacity:0;transition:.25s;z-index:50;max-width:92vw;text-align:center}
+#toast.show{opacity:1;transform:translate(-50%,0)}
+[hidden]{display:none!important}
+nav li a.navcta{background:var(--green);color:#fff}
+nav li a.cur{color:var(--orange)}
+.srvbar{display:flex;flex-wrap:wrap;gap:6px 18px;margin:0 0 14px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.06em;font-size:13px}
+.srv{display:grid;grid-template-columns:minmax(0,2.4fr) 1fr 1fr auto;gap:12px;align-items:center;background:var(--surface);border:3px solid var(--ink);padding:10px 14px;margin-bottom:10px}
+.srv h3{font:700 16px 'Barlow',sans-serif;letter-spacing:0;text-transform:none;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.srv small{display:block;color:var(--muted);font-size:13px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.srv .pl{font-weight:700}
+.srv .bar{height:6px;background:var(--line);margin-top:5px}
+.srv .bar i{display:block;height:100%;background:var(--green)}
+.srv .cp{font-size:13px;padding:6px 12px;box-shadow:none}
+.srv .tag{display:inline-block;margin-right:4px}
+.panel{background:var(--surface);border:3px solid var(--ink);box-shadow:var(--shadow);padding:22px}
+.panel p{margin:8px 0 14px;color:var(--muted)}
+.regwrap{display:grid;grid-template-columns:minmax(0,520px) minmax(0,1fr);gap:28px;align-items:start}
+form label.f{display:block;font-weight:700;text-transform:uppercase;letter-spacing:.06em;font-size:13px;margin:14px 0 4px}
+form input.t{width:100%;background:var(--bg);color:var(--ink);border:3px solid var(--ink);padding:10px 12px;font:inherit}
+form input.t:focus{outline:3px solid var(--orange)}
+.pw{display:flex;gap:8px}
+.err{color:var(--red);font-size:13px;min-height:18px;font-weight:700}
+.meter{height:8px;background:var(--line);margin-top:8px}
+.meter i{display:block;height:100%;width:0;transition:width .2s,background .2s}
+.note{border:3px dashed var(--orange);padding:12px 14px;margin-bottom:6px;font-size:14px}
+.chk{display:flex;gap:10px;align-items:flex-start;margin-top:16px;font-size:15px}
+.perks ul{padding-left:20px;color:var(--muted)}
+@media (max-width:760px){.srv{grid-template-columns:1fr 1fr}.srv>div:first-child{grid-column:1/-1}.regwrap{grid-template-columns:1fr}}
+/* GTA SA style display type: heavy, wide, outlined */
+h1,h2,h3,.logo,.btn,.stat b,.step::before,footer b,#toast{font-family:"Bowlby One","Arial Black",Impact,sans-serif;font-weight:400;letter-spacing:.01em}
+.logo{font-size:24px;-webkit-text-stroke:5px #000;paint-order:stroke fill;text-shadow:3px 3px 0 rgba(0,0,0,.3)}
+.hero h1{font-size:clamp(36px,7.2vw,84px);line-height:1.04;-webkit-text-stroke:6px #000;paint-order:stroke fill;text-shadow:5px 5px 0 rgba(0,0,0,.35)}
+.hero h1 span{color:#3fbf5a}
+.head h2{font-size:36px}
+.body h3{font-size:20px}
+.step h3{font-size:19px}
+.stat b{font-size:28px}
+.btn{font-size:16px}
+@media (max-width:640px){.sun{width:120px;height:120px}.hero .wrap{padding-bottom:130px}nav .logo{font-size:20px}}
+</style>
+</head>
+<body>
+
+<nav><div class="wrap">
+  <a class="logo" href="#top">FULLY <b>MODDED</b></a>
+  <ul><li><a href="#browse">Browse</a></li><li><a href="#servers">Servers</a></li><li><a href="#guide">How to install</a></li><li><a href="#about">About</a></li><li><a href="#register" class="navcta">Register</a></li></ul>
+  <button id="themeBtn" title="Toggle theme" aria-label="Toggle light or dark theme">☀</button>
+</div></nav>
+
+<header class="hero" id="top">
+  <div class="sun"></div>
+  <div class="wrap">
+    <small>Welcome to Fully Modded</small>
+    <h1>Fix it.<br><span>Mod it.</span> Own it.</h1>
+    <p>The community stop for GTA San Andreas mods, bug fixes, scripts and tools. Pick a fix, drop it in, and get back to the streets of San Andreas.</p>
+    <a class="btn" href="#browse">Browse mods</a><a class="btn alt" href="#guide">Install guide</a>
+  </div>
+  <svg class="skyline" viewBox="0 0 1200 150" preserveAspectRatio="none" aria-hidden="true">
+    <g fill="#12080d">
+      <path d="M0 150V96h40V70h30v26h28V50h36v46h30V84h26v66zM260 150V88h34V60h24v28h22V40h30v48h26V76h34v74zM470 150V92h30V64h40v28h24V54h20v38h36V80h30v70zM720 150V86h28V58h34v28h26V30h22v56h32V74h28v76zM960 150V90h26V62h30v28h30V48h34v42h26V78h38v72z"/>
+      <path d="M180 150c2-40 6-62 4-92 10 6 22 4 34-6-12 2-22 0-30-8 12 0 22-6 26-18-12 8-22 10-30 6 4-10 4-20-2-30-2 14-6 24-12 32-4-12-12-20-24-24 8 8 12 18 12 28-10-4-22-2-32 6 12 0 22 4 28 12-12-2-22 2-30 12 12-4 22-2 30 4 2 30-2 52-4 78z" transform="translate(520 12) scale(.9)"/>
+      <path d="M180 150c2-40 6-62 4-92 10 6 22 4 34-6-12 2-22 0-30-8 12 0 22-6 26-18-12 8-22 10-30 6 4-10 4-20-2-30-2 14-6 24-12 32-4-12-12-20-24-24 8 8 12 18 12 28-10-4-22-2-32 6 12 0 22 4 28 12-12-2-22 2-30 12 12-4 22-2 30 4 2 30-2 52-4 78z" transform="translate(-120 24) scale(.8)"/>
+    </g>
+  </svg>
+</header>
+
+<main class="wrap" id="home">
+  <div class="stats">
+    <div class="stat"><b id="sMods">0</b><span>Listings</span></div>
+    <div class="stat"><b id="sFix">0</b><span>Bug fixes</span></div>
+    <div class="stat"><b>3</b><span>Game versions</span></div>
+    <div class="stat"><b>100%</b><span>Community</span></div>
+  </div>
+
+  <section id="browse">
+    <div class="head"><h2>Mods &amp; fixes</h2><span style="color:var(--muted)">Sample listings – plug in your own files</span></div>
+    <div class="tools">
+      <input id="q" type="search" placeholder="Search mods, fixes, scripts…" aria-label="Search">
+      <select id="sort" aria-label="Sort">
+        <option value="pop">Most downloaded</option><option value="new">Newest</option><option value="az">A to Z</option>
+      </select>
+    </div>
+    <div class="chips" id="chips"></div>
+    <div class="grid" id="grid"></div>
+  </section>
+
+  <section id="guide">
+    <div class="head"><h2>How to install</h2></div>
+    <div class="steps">
+      <div class="step"><h3>Back it up</h3><p>Copy your GTA San Andreas folder before changing anything, so you can always roll back.</p></div>
+      <div class="step"><h3>Add a loader</h3><p>Install an ASI loader and CLEO if the mod needs one. Most fixes are plug-and-play after that.</p></div>
+      <div class="step"><h3>Drop it in</h3><p>Extract the download into the game folder (or the scripts folder for CLEO mods) and overwrite when asked.</p></div>
+      <div class="step"><h3>Play</h3><p>Launch the game. If something looks wrong, remove the last file you added and try again.</p></div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="head"><h2>About</h2></div>
+    <p style="max-width:680px;color:var(--muted)">Fully Modded is a fan project and is not affiliated with or endorsed by Rockstar Games or Take-Two Interactive. Grand Theft Auto and San Andreas are trademarks of their respective owners. Always download mods from sources you trust and scan every file.</p>
+  </section>
+</main>
+
+<main class="wrap view" id="viewServers" hidden><section><div class="head"><h2>Game servers</h2><span style="color:var(--muted)">SA-MP, open.mp and MTA:SA</span></div><div class="tools"><input id="sq" type="search" placeholder="Search servers, gamemodes, languages…" aria-label="Search servers"><select id="ss" aria-label="Sort servers"><option value="players">Most players</option><option value="name">A to Z</option></select><label style="display:flex;gap:8px;align-items:center;font-weight:700"><input type="checkbox" id="sHide" checked> Hide locked</label></div><div class="chips" id="sChips"></div><div class="srvbar" id="sStat"></div><div id="sList"></div><p style="text-align:center"><button class="btn" id="sMore" hidden>Show more</button></p></section></main>
+<main class="wrap view" id="viewRegister" hidden><section><div class="head"><h2>Join Fully Modded</h2></div><div class="regwrap"><div class="panel"><div class="note"><b>Preview:</b> the form is ready, but no account system is connected yet, so nothing is saved.</div><form id="regForm" novalidate><label class="f" for="rUser">Username</label><input class="t" id="rUser" type="text" autocomplete="username" maxlength="20"><div class="err" data-e="rUser"></div><label class="f" for="rMail">Email</label><input class="t" id="rMail" type="email" autocomplete="email"><div class="err" data-e="rMail"></div><label class="f" for="rPass">Password</label><div class="pw"><input class="t" id="rPass" type="password" autocomplete="new-password"><button type="button" class="chip" id="rShow">Show</button></div><div class="meter"><i id="rMeter"></i></div><div class="err" data-e="rPass"></div><label class="f" for="rPass2">Confirm password</label><input class="t" id="rPass2" type="password" autocomplete="new-password"><div class="err" data-e="rPass2"></div><label class="f">I play</label><div class="chips" style="margin:0"><label class="chip"><input type="checkbox"> SA-MP</label><label class="chip"><input type="checkbox"> open.mp</label><label class="chip"><input type="checkbox"> MTA:SA</label><label class="chip"><input type="checkbox"> Single player</label></div><label class="chk"><input type="checkbox" id="rTerms"> <span>I agree to credit mod authors and to only share files I have permission to share.</span></label><div class="err" data-e="rTerms"></div><button class="btn" type="submit" style="margin-top:10px">Create account</button></form><div id="regOk" hidden><h3>Looks good!</h3><p>Your details passed every check. This is a preview, so no account was created and nothing was saved. Once a sign-up service is connected, this form will create your account.</p><button class="btn" id="regBack" type="button">Back to the form</button></div></div><aside class="perks"><h3>What accounts are for</h3><ul><li>Submit your own mods and fixes</li><li>Rate and comment on downloads</li><li>Follow your favorite authors</li></ul><p style="color:var(--muted);font-size:14px">These features are planned and will arrive once accounts are live.</p></aside></div></section></main>
+<footer><div class="wrap"><b>FULLY MODDED</b><br>Built by fans, for fans. Respect the creators: credit authors and never re-upload without permission.</div></footer>
+<div id="toast" role="status"></div>
+
+<script>
+var MODS=[
+ {n:"ENBSeries Graphics Preset",t:"gfx",f:1,d:"A ready-to-use ENBSeries setup for San Andreas: bloom, auto exposure, depth of field, ambient occlusion, soft particles and glossy car reflections, with sky, water and lens effects switched off.",v:"Preset",u:"https://github.com/JonahSAMP/sa-mod-hub/releases/tag/ENB",dl:0,age:0,i:"✨",c:"#c27a00,#5e3a00",x:"<details><summary>Details</summary><h4>Included files</h4><ul><li><b>enbseries.asi</b>: the ENBSeries plugin for GTA San Andreas</li><li><b>enbseries.ini</b>: the effects preset</li><li><b>enblocal.ini</b>: engine and hotkey settings</li></ul><h4>Effects on</h4><ul><li>Bloom (soft by day, lighter at night)</li><li>Adaptation (auto exposure)</li><li>Depth of field</li><li>Ambient occlusion (half-resolution, light on the GPU)</li><li>Soft particles and complex shadows</li><li>Car and glass reflections</li></ul><h4>Effects off</h4><ul><li>Motion blur, lens effects, water and underwater effects</li><li>Sky sun, moon and star overrides</li></ul><h4>Engine tweaks</h4><ul><li>Borderless fullscreen</li><li>8x anisotropic filtering and edge anti-aliasing</li><li>Performance mode (SpeedHack) on, FPS limiter off</li></ul><h4>Hotkeys (hold <kbd>Shift</kbd>)</h4><ul><li><kbd>Enter</kbd> opens the in-game editor</li><li><kbd>F12</kbd> turns the effects on or off</li><li><kbd>Home</kbd> toggles the FPS limit, <kbd>Num *</kbd> shows FPS, <kbd>Print Screen</kbd> takes a screenshot</li></ul><h4>Install</h4><ul><li>Needs an ASI loader. Copy all three files next to <b>gta_sa.exe</b>.</li></ul><h4>Credit</h4><ul><li>ENBSeries is by Boris Vorontsov (enbdev.com).</li></ul></details>"},
+ {n:"Widescreen Fix",t:"fix",d:"Proper widescreen support with correct field of view and HUD scaling.",v:"2.1",dl:98000,age:2,i:"🖥️",c:"#2166b8,#0f2f66"},
+ {n:"Modern Patch",t:"fix",d:"Squashes a large set of long-standing crashes and rendering glitches.",v:"1.4",dl:122000,age:1,i:"🩹",c:"#c0392b,#5c1710"},
+ {n:"Mod Loader",t:"tool",d:"Load replacement files without touching the original game archives.",v:"0.3",dl:87000,age:4,i:"📦",c:"#2166b8,#12306b"},
+ {n:"CLEO Script Pack",t:"script",d:"A collection of handy scripts: saves, teleports, quality-of-life tweaks.",v:"4.3",dl:76000,age:3,i:"📜",c:"#7b3fc4,#341866"},
+ {n:"Realistic Traffic",t:"mod",d:"Denser, smarter traffic with more varied vehicles on the roads.",v:"1.0",dl:41000,age:6,i:"🚗",c:"#2c8a3e,#12411c"},
+ {n:"HD Textures",t:"gfx",d:"Sharper roads, buildings and foliage across Los Santos and beyond.",v:"3.2",dl:64000,age:5,i:"🎨",c:"#c27a00,#5e3a00"},
+ {n:"Frame Limit Fix",t:"fix",d:"Smooths out physics and animation issues on modern high refresh rate screens.",v:"1.2",dl:58000,age:7,i:"⏱️",c:"#c0392b,#5c1710"},
+ {n:"Skin Pack: Grove Street",t:"mod",d:"New outfits and character models inspired by the neighborhood.",v:"2.0",dl:33000,age:8,i:"👕",c:"#2c8a3e,#0f3d1a"},
+ {n:"Limit Adjuster",t:"tool",d:"Raises internal engine limits so big mod setups stop crashing.",v:"1.1",dl:71000,age:9,i:"📈",c:"#2166b8,#0f2f66"},
+ {n:"Weather Overhaul",t:"gfx",d:"Richer skies, fog and rain for a more atmospheric San Andreas.",v:"1.6",dl:29000,age:10,i:"⛅",c:"#c27a00,#4a3000"}
+];
+var LABEL={all:"All",fix:"Fixes",mod:"Mods",script:"Scripts",tool:"Tools",gfx:"Graphics"};
+var cat="all",$=function(id){return document.getElementById(id)};
+function fmt(n){return n>=1000?(n/1000).toFixed(n>=100000?0:1).replace(/\.0$/,"")+"k":n}
+function toast(m){var t=$("toast");t.textContent=m;t.classList.add("show");clearTimeout(toast.h);toast.h=setTimeout(function(){t.classList.remove("show")},2200)}
+function render(){
+  var q=$("q").value.trim().toLowerCase(),s=$("sort").value;
+  var list=MODS.filter(function(m){return(cat==="all"||m.t===cat)&&(!q||(m.n+" "+m.d).toLowerCase().indexOf(q)>-1)});
+  list.sort(function(a,b){return (b.f?1:0)-(a.f?1:0)||(s==="pop"?b.dl-a.dl:s==="new"?a.age-b.age:a.n.localeCompare(b.n))});
+  $("grid").innerHTML=list.length?list.map(function(m){
+    var k=m.c.split(",");
+    return '<article class="card"><div class="thumb" style="background:linear-gradient(135deg,'+k[0]+','+k[1]+')"><span class="ic">'+m.i+'</span><span class="tag '+m.t+'">'+LABEL[m.t]+'</span></div>'+
+    '<div class="body"><h3>'+m.n+'</h3><p>'+m.d+'</p><div class="meta"><span>'+(/^\d/.test(m.v)?'v':'')+m.v+'</span><span>'+(m.dl?fmt(m.dl)+' downloads':'New')+'</span></div>'+(m.x||'')+
+    (m.u?'<a class="btn dl" target="_blank" rel="noopener" href="'+m.u+'">Download</a>':'<button class="btn dl" data-n="'+m.n+'">Download</button>')+'</div></article>'}).join(""):'<div class="empty">No mods found. Try another search.</div>';
+}
+$("chips").innerHTML=Object.keys(LABEL).map(function(k){return '<button class="chip'+(k==="all"?" on":"")+'" data-k="'+k+'">'+LABEL[k]+'</button>'}).join("");
+$("chips").addEventListener("click",function(e){var b=e.target.closest(".chip");if(!b)return;cat=b.dataset.k;
+  [].forEach.call(document.querySelectorAll(".chip"),function(c){c.classList.toggle("on",c===b)});render()});
+$("grid").addEventListener("click",function(e){var b=e.target.closest(".dl");if(b&&b.tagName==="BUTTON")toast("Respect +  "+b.dataset.n+" (demo link)")});
+$("q").addEventListener("input",render);$("sort").addEventListener("change",render);
+$("sMods").textContent=MODS.length;$("sFix").textContent=MODS.filter(function(m){return m.t==="fix"}).length;
+$("themeBtn").addEventListener("click",function(){
+  var r=document.documentElement,dark=r.dataset.theme?r.dataset.theme==="dark":matchMedia("(prefers-color-scheme: dark)").matches;
+  r.dataset.theme=dark?"light":"dark";this.textContent=dark?"☾":"☀";
+});
+function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+var SRV=[],sp='all',sState='idle',sShown=60;
+function srvRow(s){
+  var pct=s.pm?Math.min(100,Math.round(s.pc/s.pm*100)):0,omp=s.p==='omp';
+  return '<div class="srv"><div><h3>'+esc(s.name)+'</h3><small>'+esc(s.gm||'No gamemode listed')+(s.la?' · '+esc(s.la):'')+'</small></div>'+
+  '<div><span class="pl">'+s.pc+' / '+s.pm+'</span> players<div class="bar"><i style="width:'+pct+'%"></i></div></div>'+
+  '<div><span class="tag '+(omp?'mod':'tool')+'">'+(omp?'open.mp':'SA-MP')+'</span>'+(s.pa?'<span class="tag fix">Locked</span>':'')+'<small>'+esc(s.vn)+'</small></div>'+
+  '<button class="btn cp" data-ip="'+esc(s.ip)+'">Copy IP</button></div>';
+}
+function sRender(){
+  var box=$('sList'),q=$('sq').value.trim().toLowerCase(),hide=$('sHide').checked;
+  [].forEach.call(document.querySelectorAll('#sChips .chip'),function(c){c.classList.toggle('on',c.dataset.k===sp)});
+  $('sMore').hidden=true;
+  if(sp==='mta'){$('sStat').textContent='';box.innerHTML='<div class="panel"><h3>MTA:SA servers</h3><p>This page can’t read MTA’s live list directly, so use the server browser built into MTA, or a listing site.</p><a class="btn" href="https://multitheftauto.com" target="_blank" rel="noopener">MTA website</a> <a class="btn alt" href="https://gamemonitoring.net/multi-theft-auto" target="_blank" rel="noopener">Server list</a></div>';return}
+  if(sState==='idle'||sState==='loading'){$('sStat').textContent='';box.innerHTML='<div class="empty">Loading servers…</div>';return}
+  if(sState==='error'){$('sStat').textContent='';box.innerHTML='<div class="panel"><h3>Couldn’t load the live list</h3><p>The server list could not be reached from this page. Open it directly instead:</p><a class="btn" href="https://open.mp/servers" target="_blank" rel="noopener">open.mp server list</a> <a class="btn alt" href="https://sam.markski.ar" target="_blank" rel="noopener">SAMonitor</a></div>';return}
+  var list=SRV.filter(function(s){return (sp==='all'||s.p===sp)&&(!hide||!s.pa)&&(!q||(s.name+' '+s.gm+' '+s.la).toLowerCase().indexOf(q)>-1)});
+  var srt=$('ss').value,pl=0;
+  list.sort(function(a,b){return srt==='name'?a.name.localeCompare(b.name):b.pc-a.pc});
+  list.forEach(function(s){pl+=s.pc});
+  $('sStat').innerHTML='<span>'+list.length+' servers</span><span>'+pl+' players online</span><span>Source: open.mp server list</span>';
+  box.innerHTML=list.slice(0,sShown).map(srvRow).join('')||'<div class="empty">No servers match.</div>';
+  $('sMore').hidden=list.length<=sShown;
+}
+function loadServers(){
+  if(sState==='loading'||sState==='ok')return;
+  sState='loading';sRender();
+  var ctl=new AbortController(),t=setTimeout(function(){ctl.abort()},12000);
+  fetch('https://api.open.mp/servers',{signal:ctl.signal}).then(function(r){if(!r.ok)throw new Error('http');return r.json()}).then(function(a){
+    if(a&&!Array.isArray(a))a=a.servers||a.data||a.items||a;
+    if(!Array.isArray(a))throw new Error('shape');
+    SRV=a.map(function(s){var c=(s&&s.core)||s||{};return {ip:String(c.ip||''),name:String(c.hn||c.ip||''),pc:+c.pc||0,pm:+c.pm||0,gm:String(c.gm||''),la:String(c.la||''),pa:!!c.pa,vn:String(c.vn||''),p:/omp|open\.?mp/i.test(c.vn||'')?'omp':'samp'}}).filter(function(s){return s.ip});
+    sState='ok';
+  }).catch(function(){sState='error'}).then(function(){clearTimeout(t);sRender()});
+}
+$('sChips').innerHTML=[['all','All'],['samp','SA-MP'],['omp','open.mp'],['mta','MTA:SA']].map(function(c){return '<button class="chip" data-k="'+c[0]+'">'+c[1]+'</button>'}).join('');
+$('sChips').addEventListener('click',function(e){var b=e.target.closest('.chip');if(!b)return;sp=b.dataset.k;sShown=60;sRender()});
+$('sq').addEventListener('input',function(){sShown=60;sRender()});
+$('ss').addEventListener('change',sRender);$('sHide').addEventListener('change',sRender);
+$('sMore').addEventListener('click',function(){sShown+=60;sRender()});
+$('sList').addEventListener('click',function(e){var b=e.target.closest('.cp');if(!b)return;var ip=b.dataset.ip;
+  (navigator.clipboard?navigator.clipboard.writeText(ip):Promise.reject()).then(function(){toast('Copied '+ip)},function(){toast(ip)})});
+
+var rf=$('regForm');
+function setErr(id,m){document.querySelector('[data-e="'+id+'"]').textContent=m||''}
+function strength(p){var s=0;if(p.length>=8)s++;if(p.length>=12)s++;if(/[a-z]/.test(p)&&/[A-Z]/.test(p))s++;if(/\d/.test(p))s++;if(/[^A-Za-z0-9]/.test(p))s++;return s}
+$('rPass').addEventListener('input',function(){var s=strength(this.value),m=$('rMeter');m.style.width=(this.value?Math.max(15,s*20):0)+'%';m.style.background=s<=2?'var(--red)':s<=3?'var(--orange)':'var(--green)'});
+$('rShow').addEventListener('click',function(){var p=$('rPass'),sh=p.type==='password';p.type=sh?'text':'password';$('rPass2').type=p.type;this.textContent=sh?'Hide':'Show'});
+rf.addEventListener('submit',function(e){
+  e.preventDefault();
+  var u=$('rUser').value.trim(),m=$('rMail').value.trim(),p=$('rPass').value,ok=true;
+  function chk(id,bad,msg){setErr(id,bad?msg:'');if(bad)ok=false}
+  chk('rUser',!/^[A-Za-z0-9_]{3,20}$/.test(u),'Use 3 to 20 letters, numbers or underscores.');
+  chk('rMail',!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(m),'Enter a valid email address.');
+  chk('rPass',p.length<8||!/\d/.test(p)||!/[A-Za-z]/.test(p),'Use at least 8 characters with a letter and a number.');
+  chk('rPass2',$('rPass2').value!==p,'Passwords do not match.');
+  chk('rTerms',!$('rTerms').checked,'Please accept the rules to continue.');
+  if(!ok)return;
+  rf.reset();$('rMeter').style.width='0';rf.hidden=true;$('regOk').hidden=false;
+});
+$('regBack').addEventListener('click',function(){$('regOk').hidden=true;rf.hidden=false});
+
+function route(){
+  var h=location.hash.slice(1),v=(h==='servers'||h==='register')?h:'home';
+  $('top').hidden=$('home').hidden=(v!=='home');
+  $('viewServers').hidden=v!=='servers';$('viewRegister').hidden=v!=='register';
+  [].forEach.call(document.querySelectorAll('nav li a'),function(a){a.classList.toggle('cur',a.getAttribute('href')==='#'+h)});
+  if(v==='servers')loadServers();
+  if(v==='home'&&h&&$(h))$(h).scrollIntoView();else window.scrollTo(0,0);
+}
+addEventListener('hashchange',route);route();
+render();
+</script>
+</body>
+</html>
